@@ -1,0 +1,29 @@
+virbos package repository
+=========================
+
+This is the repository that houses the Virbos
+package repository. Here we use a series of Makefiles
+to clone the PKGBUILDS into their directories, and to
+then build the packages and generate the repository
+database.
+
+Built packages and repository databases are put in the
+pkgs/ directory and are served over HTTP.
+
+To compile all packages, run:
+
+	make -Cpkgs
+
+This will build all packages and generate repository
+databases in the 'pkgs' directory. This directory
+contains all the built packages, and is accessed by
+pacman to fetch all needed packages.
+
+To add this repository to an existing Arch Linux install,
+add these lines to /etc/pacman.conf:
+
+	[virbos]
+	SigLevel = Optional TrustAll
+	Server = https://virbos.github.io/pkgs/pkgs
+
+Then make sure to refresh your repositories with a pacman -Syu.

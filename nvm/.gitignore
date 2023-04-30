@@ -1,0 +1,11 @@
+PKGBUILD
+*.install
+*.pkg.tar.*
+pkg/
+src/
+
+# nvm-specific
+nvm-*.tar.gz
+init-nvm.sh
+install-nvm-exec
+update.sh
