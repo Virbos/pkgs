@@ -1,14 +1,14 @@
-MAKEPKG = makepkg -cs
+MAKEPKG = makepkg -cs --nosign
 REPOADD = repo-add
 
 PKGNAMES = librewolf maxfetch nvm vscodium
 PKGS     = librewolf-*.pkg.tar.xz maxfetch-*.pkg.tar.zst nvm-*.pkg.tar.zst vscodium-*.pkg.tar.xz
-#GPGKEY   = CD735FBFF84E7729B27F88E65222945A86F1670C
 
 all: virbos.db.tar.xz
 
 virbos.db.tar.xz: ${PKGS}
-	${REPOADD} -R -n -s virbos.db.tar.xz ${PKGS}
+	${REPOADD} virbos.db.tar.xz ${PKGS}
+	rm -f *.sig
 
 librewolf-*.pkg.tar.xz:
 	${MAKE} -C../librewolf
@@ -28,9 +28,7 @@ vscodium-*.pkg.tar.xz:
 
 clean:
 	rm -f virbos.db* virbos.files* ${PKGS}
-	for pkg in ${PKGS}; do rm -f "$$pkg".sig; done
 	for pkg in ${PKGNAMES}; do make -C../$$pkg clean; done
-
 
 .PHONY: clean
 
