@@ -4,10 +4,13 @@ REPOADD = repo-add
 PKGNAMES = librewolf maxfetch nvm vscodium
 PKGS     = librewolf-*.pkg.tar.xz maxfetch-*.pkg.tar.zst nvm-*.pkg.tar.zst vscodium-*.pkg.tar.xz
 
-all: virbos.db.tar.xz
+all: virbos.db
 
-virbos.db.tar.xz: ${PKGS}
+virbos.db: ${PKGS}
 	${REPOADD} virbos.db.tar.xz ${PKGS}
+	rm -f virbos.db virbos.files
+	mv virbos.db.tar.xz virbos.db
+	mv virbos.files.tar.xz virbos.files
 	rm -f *.sig
 
 librewolf-*.pkg.tar.xz:
