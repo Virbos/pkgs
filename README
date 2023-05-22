@@ -23,7 +23,7 @@ To add this repository to an existing Arch Linux install,
 add these lines to /etc/pacman.conf:
 
 	[virbos]
-	SigLevel = Optional TrustAll
-	Server = https://virbos.github.io/pkgs/pkgs
+	SigLevel = Optional DatabaseOptional
+	Server = https://download.virbos.xyz/packages/$arch
 
 Then make sure to refresh your repositories with a pacman -Syu.
