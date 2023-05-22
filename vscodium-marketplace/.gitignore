@@ -1,0 +1,9 @@
+PKGBUILD
+*.install
+*.pkg.tar.*
+pkg/
+src/
+
+# vscodium-marketplace specific
+patch.py
+*.hook
