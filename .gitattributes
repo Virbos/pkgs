@@ -1,2 +1,0 @@
-*.pkg.tar.zst filter=lfs diff=lfs merge=lfs -text
-*.pkg.tar.xz filter=lfs diff=lfs merge=lfs -text
