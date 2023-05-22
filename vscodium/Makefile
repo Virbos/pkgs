@@ -1,7 +1,7 @@
 PKG = vscodium-bin
 
 PKGBUILD:
-	git clone https://aur.archlinux.org/${PKG}.git
+	git clone --depth=1 https://aur.archlinux.org/${PKG}.git
 	cp -f ${PKG}/PKGBUILD .
 	cp -f ${PKG}/vscodium-bin.sh ./vscodium.sh
 	cp -f ${PKG}/vscodium-bin.desktop ./vscodium.desktop

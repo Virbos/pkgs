@@ -1,7 +1,7 @@
 PKG = nvm
 
 PKGBUILD:
-	git clone https://aur.archlinux.org/${PKG}.git
+	git clone --depth=1 https://aur.archlinux.org/${PKG}.git
 	cp -f ${PKG}/{PKGBUILD,init-nvm.sh,install-nvm-exec,nvm.install,update.sh} .
 	rm -rf ${PKG}
 
