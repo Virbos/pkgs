@@ -1,0 +1,8 @@
+PKGBUILD
+*.install
+*.pkg.tar.*
+pkg/
+src/
+
+# alacritty-specific
+alacritty/
