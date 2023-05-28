@@ -3,9 +3,15 @@ virbos package repository
 
 This is the repository that houses the Virbos
 package repository. Here we use a series of Makefiles
-to clone the PKGBUILDS into their directories, and to
-then build the packages and generate the repository
-database.
+to clone the PKGBUILDS into their directories to patch
+them, and to then build the packages and generate the
+repository database.
+
+These packages are common AUR packages like librewolf,
+codium, yay etc.
+The repo is designed to work with existing Arch installs,
+so feel free to add it to your config. (See the bottom
+of the document)
 
 Built packages and repository databases are put in the
 pkgs/ directory and are served over HTTP.
