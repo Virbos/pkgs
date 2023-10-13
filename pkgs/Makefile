@@ -1,71 +1,39 @@
-MAKEPKG = makepkg -cs --nosign
+MAKEPKG = makepkg -cs --noconfirm --nosign
 REPOADD = repo-add
 
-PKGNAMES = alacritty-sixel librewolf ly maxfetch ninvaders nvm \
-		   virbos-livescripts virbos-logos virbos-utils vscodium \
+PKGS     = alacritty-sixel ly maxfetch ninvaders nvm \
+		   virbos-livescripts virbos-logos virbos-utils \
 		   vscodium-marketplace yay
-PKGS     = alacritty-sixel-*.pkg.tar.zst librewolf-*.pkg.tar.xz ly-*.pkg.tar.zst \
-		   maxfetch-*.pkg.tar.zst ninvaders-*.pkg.tar.zst nvm-*.pkg.tar.zst \
-		   virbos-livescripts-*.pkg.tar.zst virbos-logos-*.pkg.tar.zst \
-		   virbos-utils-*.pkg.tar.zst vscodium-*.pkg.tar.xz \
-		   vscodium-marketplace-*.pkg.tar.zst yay-*.pkg.tar.zst
+XZPKGS   = librewolf vscodium
 
 all: virbos.db
 
-virbos.db: ${PKGS}
-	${REPOADD} virbos.db.tar.xz ${PKGS}
-	rm -f *.sig
+pkgs:
+	@for pkg in ${PKGS}; do                           \
+		if [ -e "$$pkg"-*.pkg.tar.zst ]; then         \
+			printf "==> %s\n" "$$pkg"; continue; fi;  \
+		printf "==> Building package '%s'\n" "$$pkg"; \
+		${MAKE} -C../"$$pkg";                         \
+		cd ../"$$pkg"; PKGDEST=../pkgs ${MAKEPKG};    \
+	done
+	@for pkg in ${XZPKGS}; do                                         \
+		if [ -e "$$pkg"-*.pkg.tar.xz ]; then                          \
+			printf "==> %s\n" "$$pkg"; continue; fi;                  \
+		printf "==> Building xz package '%s'\n" "$$pkg";              \
+		${MAKE} -C../"$$pkg";                                         \
+		cd ../"$$pkg"; PKGDEST=../pkgs PKGEXT=.pkg.tar.xz ${MAKEPKG}  \
+			|| exit 1;                                                \
+	done
 
-alacritty-sixel-*.pkg.tar.zst:
-	${MAKE} -C../alacritty-sixel
-	cd ../alacritty-sixel && PKGDEST="../pkgs" ${MAKEPKG}
-
-librewolf-*.pkg.tar.xz:
-	${MAKE} -C../librewolf
-	cd ../librewolf && PKGDEST="../pkgs" PKGEXT=".pkg.tar.xz" ${MAKEPKG}
-
-ly-*.pkg.tar.zst:
-	${MAKE} -C../ly
-	cd ../ly && PKGDEST="../pkgs" ${MAKEPKG}
-
-maxfetch-*.pkg.tar.zst:
-	${MAKE} -C../maxfetch
-	cd ../maxfetch && PKGDEST="../pkgs" ${MAKEPKG}
-
-nvm-*.pkg.tar.zst:
-	${MAKE} -C../nvm
-	cd ../nvm && PKGDEST="../pkgs" ${MAKEPKG}
-
-ninvaders-*.pkg.tar.zst:
-	${MAKE} -C../ninvaders
-	cd ../ninvaders && PKGDEST="../pkgs" ${MAKEPKG}
-
-virbos-livescripts-*.pkg.tar.zst:
-	${MAKE} -C../virbos-livescripts
-	cd ../virbos-livescripts && PKGDEST="../pkgs" ${MAKEPKG}
-
-virbos-logos-*.pkg.tar.zst:
-	${MAKE} -C../virbos-logos
-	cd ../virbos-logos && PKGDEST="../pkgs" ${MAKEPKG}
-
-virbos-utils-*.pkg.tar.zst:
-	${MAKE} -C../virbos-utils
-	cd ../virbos-utils && PKGDEST="../pkgs" ${MAKEPKG}
-
-vscodium-*.pkg.tar.xz:
-	${MAKE} -C../vscodium
-	cd ../vscodium && PKGDEST="../pkgs" PKGEXT=".pkg.tar.xz" ${MAKEPKG}
-
-vscodium-marketplace-*.pkg.tar.zst:
-	${MAKE} -C../vscodium-marketplace
-	cd ../vscodium-marketplace && PKGDEST="../pkgs" ${MAKEPKG}
-
-yay-*.pkg.tar.zst:
-	${MAKE} -C../yay
-	cd ../yay && PKGDEST="../pkgs" ${MAKEPKG}
+virbos.db: pkgs
+	${REPOADD} virbos.db.tar.xz \
+		$(foreach pkg,${PKGS},${pkg}-*.pkg.tar.zst) \
+		$(foreach pkg,${XZPKGS},${pkg}-*.pkg.tar.xz)
 
 clean:
-	rm -f virbos.db* virbos.files* ${PKGS}
-	for pkg in ${PKGNAMES}; do make -C../$$pkg clean; done
+	rm -f virbos.db* virbos.files* \
+		$(foreach pkg,${PKGS},${pkg}-*.pkg.tar.zst) \
+		$(foreach pkg,${XZPKGS},${pkg}-*.pkg.tar.xz)
+	for pkg in ${PKGS}; do make -s -C../$$pkg clean; done
 
-.PHONY: clean
+.PHONY: all clean pkgs
