@@ -6,6 +6,7 @@ src/
 
 # vscodium-specific
 vscodium.desktop
+vscodium-wayland.desktop
 vscodium-uri-handler.desktop
 vscodium.sh
 VSCodium-*.tar.gz

@@ -5,6 +5,7 @@ PKGBUILD:
 	cp -f ${PKG}/PKGBUILD .
 	cp -f ${PKG}/vscodium-bin.sh ./vscodium.sh
 	cp -f ${PKG}/vscodium-bin.desktop ./vscodium.desktop
+	cp -f ${PKG}/vscodium-bin-wayland.desktop ./vscodium-wayland.desktop
 	cp -f ${PKG}/vscodium-bin.install ./vscodium.install
 	cp -f ${PKG}/vscodium-bin-uri-handler.desktop ./vscodium-uri-handler.desktop
 	sed -i 's/-bin//' PKGBUILD
