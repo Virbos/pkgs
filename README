@@ -1,29 +1,29 @@
 virbos package repository
 =========================
 
-This is the repository that houses the Virbos
-package repository. Here we use a series of Makefiles
-to clone the PKGBUILDS into their directories to patch
-them, and to then build the packages and generate the
-repository database.
+This is the source of the build system for the Virbos package repository.
+Here we use a hierarchy of Makefiles to clone the PKGBUILDS into their
+directories, to patch them, and to then build the packages and generate
+the repository database.
 
-These packages are common AUR packages like librewolf,
-codium, yay etc.
-The repo is designed to work with existing Arch installs,
-so feel free to add it to your config. (See the bottom
-of the document)
+These packages are common AUR packages like librewolf, codium, yay etc.
+The repo is designed to work with existing Arch installs, so feel free to
+add it to your config. (See below)
 
-Built packages and repository databases are put in the
-pkgs/ directory and are served over HTTP.
+Built packages and repository databases are put in the pkgs/ directory
+and are served over HTTP at download.virbos.xyz.
 
 To compile all packages, run:
 
 	make -Cpkgs
 
-This will build all packages and generate repository
-databases in the 'pkgs' directory. This directory
-contains all the built packages, and is accessed by
-pacman to fetch all needed packages.
+This will build all packages and generate repository databases in
+the 'pkgs' directory. This directory contains all the built packages,
+and is accessed by pacman to fetch all needed packages.
+
+Note that to build the librewolf package, you will need to add their PGP key:
+
+	gpg --keyserver hkp://keyserver.ubuntu.com --search-keys 662E3CDD6FE329002D0CA5BB40339DD82B12EF16
 
 To add this repository to an existing Arch Linux install,
 add these lines to /etc/pacman.conf:
@@ -32,4 +32,61 @@ add these lines to /etc/pacman.conf:
 	SigLevel = Optional DatabaseOptional
 	Server = https://download.virbos.xyz/packages/$arch
 
-Then make sure to refresh your repositories with a pacman -Syu.
+After that, make sure to refresh your repositories with a pacman -Syu.
+
+package development
+=========================
+
+As stated before, we use a hierarchy of Makefiles to build the packages
+in this repository. Each package has its own directory with its own Makefile,
+containing the instructions for creating build files. This could mean fetching
+the PKGBUILD or other required files off of the Internet, patching any files,
+or any other process that must be performed at build time.
+
+The 'pkgs' directory contains the Makefile that will call all other Makefiles.
+
+I will now describe the process for creating new packages.
+
+To add a new package, add the package name to the PKGS variable in this Makefile.
+This should not include -git or -bin at the end, as most AUR packages do. A common
+package might get its sources from the AUR, so this is important.
+
+If your package is significantly large (>50MB) once built, you might want to apply a
+stronger compression method so the built package will take up less space. To do this,
+we use the XZPKGS variable. This variable is a list of packages that will be built
+last and compressed using the xz compression algorithm, rather than the default weaker
+zstd algorithm.
+
+After you have added it to either PKGS or XZPKGS, you can add a Makefile
+for your package. To do this, make a copy of the 'template' directory named
+after your package. Inside it shall be a basic Makefile.
+
+If your package is available on the AUR, which it most probably is, you can
+make things much easier for yourself by fetching the PKGBUILD and any other
+required build files from the AUR.
+To do this, set the PKG variable to the name of your package in the AUR.
+Run 'git clone' on https://aur.archlinux.org/${PKG}.git and copy any files
+including the PKGBUILD from the newly cloned directory. If your package name
+ends with -git or -bin, remove that from the PKGBUILD and any other files
+by using sed. **If any other patching is required AT ALL, use a patch!**
+
+testing
+--------
+
+Test the build of the package tree by running 'make -Cpkgs'.
+This is to make sure that your package builds successfully and so that
+your changes does not affect any other package, or the build of the package tree.
+
+submission
+----------------
+
+After this, you can submit a pull request to the main repository.
+A "pull request" is a submission of changes to a source code repository.
+
+Create a fork of the main package repository by clicking the "Fork" button
+on our github page, and create a new branch for your changes (usually named
+after the name of your package, or a brief description of your changes).
+
+Commit and push your changes to your new branch on your fork, and create
+a pull request on the main repository. Your changes will then be quickly
+reviewed and discussed, or merged into the master branch.
