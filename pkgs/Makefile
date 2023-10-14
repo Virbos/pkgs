@@ -10,7 +10,7 @@ all: virbos.db
 
 pkgs:
 	@for pkg in ${PKGS}; do                           \
-		if [ -e "$$pkg"-*.pkg.tar.zst ]; then         \
+		if [ -e "$$pkg"-*-*.pkg.tar.zst ]; then       \
 			printf "==> %s\n" "$$pkg"; continue; fi;  \
 		printf "==> Building package '%s'\n" "$$pkg"; \
 		${MAKE} -C../"$$pkg";                         \
@@ -18,7 +18,7 @@ pkgs:
 			|| exit 1;                                \
 	done
 	@for pkg in ${XZPKGS}; do                                         \
-		if [ -e "$$pkg"-*.pkg.tar.xz ]; then                          \
+		if [ -e "$$pkg"-*-*.pkg.tar.xz ]; then                        \
 			printf "==> %s\n" "$$pkg"; continue; fi;                  \
 		printf "==> Building xz package '%s'\n" "$$pkg";              \
 		${MAKE} -C../"$$pkg";                                         \
