@@ -2,6 +2,7 @@ MAKEPKG = makepkg -cs --noconfirm --nosign
 REPOADD = repo-add
 
 PKGS   = alacritty-sixel      \
+         callisto             \
          ktechlab             \
          lite-xl              \
          ly                   \
