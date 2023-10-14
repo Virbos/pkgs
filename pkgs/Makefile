@@ -14,7 +14,8 @@ pkgs:
 			printf "==> %s\n" "$$pkg"; continue; fi;  \
 		printf "==> Building package '%s'\n" "$$pkg"; \
 		${MAKE} -C../"$$pkg";                         \
-		cd ../"$$pkg"; PKGDEST=../pkgs ${MAKEPKG};    \
+		cd ../"$$pkg"; PKGDEST=../pkgs ${MAKEPKG}     \
+			|| exit 1;                                \
 	done
 	@for pkg in ${XZPKGS}; do                                         \
 		if [ -e "$$pkg"-*.pkg.tar.xz ]; then                          \
