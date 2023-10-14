@@ -1,9 +1,18 @@
 MAKEPKG = makepkg -cs --noconfirm --nosign
 REPOADD = repo-add
 
-PKGS   = alacritty-sixel ktechlab lite-xl ly maxfetch \
-         ninvaders nvm virbos-livescripts virbos-logos virbos-utils \
-         vscodium-marketplace yay
+PKGS   = alacritty-sixel      \
+         ktechlab             \
+         lite-xl              \
+         ly                   \
+         maxfetch             \
+         ninvaders            \
+         nvm                  \
+         virbos-livescripts   \
+         virbos-logos         \
+         virbos-utils         \
+         vscodium-marketplace \
+         yay
 XZPKGS = librewolf vscodium
 
 all: virbos.db
