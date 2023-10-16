@@ -20,9 +20,9 @@ all: virbos.db
 
 pkgs:
 	@for pkg in ${PKGS}; do                           \
+		printf "==> %s\n" "$$pkg";                    \
 		if [ -e "$$pkg"-*-*.pkg.tar.zst ]; then       \
-			printf "==> %s\n" "$$pkg"; continue; fi;  \
-		printf "==> Building package '%s'\n" "$$pkg"; \
+			continue; fi;                             \
 		${MAKE} -C../"$$pkg";                         \
 		cd ../"$$pkg"; PKGDEST=../pkgs ${MAKEPKG}     \
 			|| exit 1;                                \
