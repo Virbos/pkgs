@@ -8,6 +8,6 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.*
+	rm -rf PKGBUILD src pkg *.pkg.tar.* ktechlab-*.tar.xz
 
 .PHONY: clean

@@ -2,3 +2,5 @@ PKGBUILD
 *.pkg.tar.*
 pkg/
 src/
+
+ktechlab-*.tar.xz
