@@ -1,0 +1,14 @@
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -1,9 +1,9 @@
+ # Maintainer: Yuandi <realyuandi42@gmail.com>
+ 
+-pkgname=ttf-maple
++pkgname=ttf-maple-mono
+ pkgver=6.4
+ pkgrel=1
+-pkgdesc="Open source monospace/Nerd Font font with round corner for IDE and command line"
++pkgdesc="Cozy monospace/nerd font with round corners and ligatures"
+ arch=("any")
+ url="https://github.com/subframe7536/maple-font"
+ license=("OFL")

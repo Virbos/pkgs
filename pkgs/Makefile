@@ -9,6 +9,7 @@ PKGS   = alacritty-sixel      \
          maxfetch             \
          ninvaders            \
          nvm                  \
+         ttf-maple-mono       \
          virbos-livescripts   \
          virbos-logos         \
          virbos-utils         \
