@@ -13,7 +13,7 @@ PKGS   = callisto             \
          virbos-utils         \
          vscodium-marketplace \
          yay
-XZPKGS = librewolf vscodium
+XZPKGS = vscodium
 
 all: virbos.db
 
