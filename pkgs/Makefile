@@ -4,7 +4,6 @@ REPOADD = repo-add
 PKGS   = callisto             \
          ktechlab             \
          lite-xl              \
-         ly                   \
          maxfetch             \
          ninvaders            \
          nvm                  \
