@@ -29,21 +29,16 @@ pkgs:
 	@for pkg in ${XZPKGS}; do                                         \
 		if [ -e "$$pkg"-*-*.pkg.tar.xz ]; then                        \
 			printf "==> %s\n" "$$pkg"; continue; fi;                  \
-		printf "==> Building xz package '%s'\n" "$$pkg";              \
 		${MAKE} -C../"$$pkg";                                         \
 		cd ../"$$pkg"; PKGDEST=../pkgs PKGEXT=.pkg.tar.xz ${MAKEPKG}  \
 			|| exit 1;                                                \
 	done
 
 virbos.db: pkgs
-	${REPOADD} virbos.db.tar.xz \
-		$(foreach pkg,${PKGS},${pkg}-*.pkg.tar.zst) \
-		$(foreach pkg,${XZPKGS},${pkg}-*.pkg.tar.xz)
+	${REPOADD} virbos.db.tar.xz *.pkg.tar.*
 
 clean:
-	rm -f virbos.db* virbos.files* \
-		$(foreach pkg,${PKGS},${pkg}-*.pkg.tar.zst) \
-		$(foreach pkg,${XZPKGS},${pkg}-*.pkg.tar.xz)
+	rm -f virbos.db* virbos.files* *.pkg.tar.*
 	for pkg in ${PKGS}; do make -s -C../$$pkg clean; done
 
 .PHONY: all clean pkgs
