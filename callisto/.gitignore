@@ -1,6 +1,2 @@
-PKGBUILD
-*.pkg.tar.*
-pkg/
-src/
-
-callisto-*.tgz
+!Makefile
+*

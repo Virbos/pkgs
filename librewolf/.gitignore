@@ -1,12 +1,2 @@
-PKGBUILD
-*.install
-*.pkg.tar.*
-pkg/
-src/
-
-# librewolf-specific
-librewolf-*.tar.bz2
-librewolf-*.tar.bz2.sig
-librewolf.desktop
-default*x*.png
-source/
+!Makefile
+*

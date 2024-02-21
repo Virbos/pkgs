@@ -1,6 +1,3 @@
-PKGBUILD
-*.pkg.tar.*
-pkg/
-src/
-
-ktechlab-*.tar.xz
+!Makefile
+!pkgbuild.diff
+*

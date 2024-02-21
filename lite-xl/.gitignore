@@ -1,6 +1,2 @@
-PKGBUILD
-*.pkg.tar.*
-pkg/
-src/
-
-lite-xl-*.tar.gz
+!Makefile
+*
