@@ -1,5 +1,5 @@
---- a/PKGBUILD
-+++ b/PKGBUILD
+--- PKGBUILD
++++ PKGBUILD
 @@ -1,9 +1,9 @@
  # Maintainer: Yuandi <realyuandi42@gmail.com>
  

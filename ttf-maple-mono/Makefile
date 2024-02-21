@@ -1,10 +1,9 @@
-PKG  = ttf-maple
-DIFF = pkgbuild.diff
+PKG = ttf-maple
 
 PKGBUILD:
 	git clone --depth=1 https://aur.archlinux.org/${PKG}.git
 	cp -f ${PKG}/PKGBUILD .
-	patch <${DIFF}
+	patch -p0 -i pkgbuild.diff
 	rm -rf ${PKG}
 
 clean:
