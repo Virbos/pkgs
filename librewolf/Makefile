@@ -8,6 +8,6 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.* default*x*.png librewolf.desktop librewolf.install source
+	rm -rf PKGBUILD src pkg *.pkg.tar.* librewolf-*.tar.* default*x*.png librewolf.desktop librewolf.install source
 
 .PHONY: clean

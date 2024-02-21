@@ -6,6 +6,6 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.*
+	rm -rf PKGBUILD src pkg *.pkg.tar.* virbos-setup
 
 .PHONY: clean

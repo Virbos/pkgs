@@ -12,6 +12,6 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.* vscodium.sh vscodium.desktop vscodium.install vscodium-uri-handler.desktop VSCodium-*.tar.gz
+	rm -rf PKGBUILD src pkg *.pkg.tar.* vscodium.sh vscodium.desktop vscodium-wayland.desktop vscodium.install vscodium-uri-handler.desktop VSCodium-*.tar.gz
 
 .PHONY: clean

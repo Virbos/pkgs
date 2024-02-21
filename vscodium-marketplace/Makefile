@@ -9,6 +9,6 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.* patch.py vscodium-bin-marketplace.{hook,install}
+	rm -rf PKGBUILD src pkg *.pkg.tar.* patch.py vscodium-marketplace.{hook,install}
 
 .PHONY: clean

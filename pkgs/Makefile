@@ -39,6 +39,6 @@ virbos.db: pkgs
 
 clean:
 	rm -f virbos.db* virbos.files* *.pkg.tar.*
-	for pkg in ${PKGS}; do make -s -C../$$pkg clean; done
+	for pkg in ${PKGS} ${XZPKGS}; do make -s -C../$$pkg clean; done
 
 .PHONY: all clean pkgs

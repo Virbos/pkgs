@@ -1,8 +1,7 @@
-_PKG = logos
-PKG  = virbos-logos
+PKG = logos
 
 PKGBUILD:
-	git clone --depth=1 https://github.com/Virbos/${_PKG}.git ${PKG}
+	git clone --depth=1 https://github.com/Virbos/${PKG}.git
 	cp -f ${PKG}/PKGBUILD .
 	rm -rf ${PKG}
 
