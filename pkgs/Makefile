@@ -1,7 +1,8 @@
 MAKEPKG = makepkg -cs --noconfirm --nosign
 REPOADD = repo-add
 
-PKGS   = callisto \
+PKGS   = arkenfox-userjs \
+         callisto \
          ktechlab \
          lite-xl \
          maxfetch \
