@@ -1,0 +1,62 @@
+Change package name to arkenfox-userjs and add pkg-readme
+--- PKGBUILD
++++ PKGBUILD
+@@ -1,9 +1,10 @@
+ _name=arkenfox
+ _repo=user.js
+-pkgname=${_name}-${_repo}
++_pkgname=${_name}-${_repo}
++pkgname=arkenfox-userjs
+ pkgver=122.0
+ pkgrel=1
+-pkgdesc='Firefox privacy, security and anti-tracking: a comprehensive user.js template for configuration and hardening'
++pkgdesc='Comprehensive Firefox user.js template for privacy and hardening'
+ arch=('any')
+ url="https://github.com/${_name}/${_repo}"
+ license=('MIT')
+@@ -12,15 +13,17 @@ options=('!strip')
+ _snapshot="${_repo}-${pkgver}"
+ 
+ source=(
+-    "${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
++    "${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+     '01-updater.patch'
+     '02-cleaner.patch'
++    'pkg-readme'
+ )
+ 
+ sha256sums=(
+     'd2d2e5e39ef0a0541fd73b61be05aab06fa542e66d17727e21e2c07567e0316d'
+     '7781ec7b33b7a7ca6770dc04442dad529f188f58112408bf4c36815b0bf36f05'
+     '1daf6eb8f0bd1cb4437f66ff27e856c553ca6532795da79e20551ef10ee0b6b9'
++    'SKIP'
+ )
+ 
+ prepare() {
+@@ -32,6 +35,7 @@
+ package() {
+     local pkg_bin="${pkgdir}/usr/bin"
+     local shr="/usr/share/${pkgname}"
++    local pd="$(pwd)"
+ 
+     cd "${_snapshot}"
+ 
+@@ -41,4 +45,5 @@
+ 
+     install -Dm644 -t "${pkgdir}${shr}" 'user.js'
+     install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" 'LICENSE.txt'
++    install -Dm644 -t "${pkgdir}/usr/share/pkg-readmes/arkenfox-userjs" "$pd"/pkg-readme
+ }
+--- /dev/null
++++ pkg-readme
+@@ -0,0 +1,10 @@
++pkg-readme for arkenfox
++========================
++
++Arkenfox is a user.js template which you must manually copy into your
++Firefox profile. To find your Firefox profile, open about:support and
++look for "Profile Directory" under "Application Basics". Copy
++/usr/share/arkenfox-userjs/user.js into the root of your profile.
++
++For more info:
++  https://github.com/arkenfox/user.js/wiki/3.4-Apply-&-Update-&-Maintain
