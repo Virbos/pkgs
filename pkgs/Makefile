@@ -1,16 +1,16 @@
 MAKEPKG = makepkg -cs --noconfirm --nosign
 REPOADD = repo-add
 
-PKGS   = callisto             \
-         ktechlab             \
-         lite-xl              \
-         maxfetch             \
-         ninvaders            \
-         nvm                  \
-         ttf-maple-mono       \
-         virbos-livescripts   \
-         virbos-logos         \
-         virbos-utils         \
+PKGS   = callisto \
+         ktechlab \
+         lite-xl \
+         maxfetch \
+         ninvaders \
+         nvm \
+         ttf-maple-mono \
+         virbos-livescripts \
+         virbos-logos \
+         virbos-utils \
          vscodium-marketplace \
          yay
 XZPKGS = librewolf vscodium
