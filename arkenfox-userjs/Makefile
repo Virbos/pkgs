@@ -10,7 +10,7 @@ PKGBUILD:
 	rm -rf ${PKG}
 
 clean:
-	rm -rf PKGBUILD src pkg *.pkg.tar.* \
+	rm -rf PKGBUILD src pkg *.pkg.tar.* ${PKG} \
 		pkg-readme 0*-*.patch arkenfox-user.js-*.tar.gz
 
 .PHONY: clean
