@@ -3,7 +3,6 @@ REPOADD = repo-add
 
 PKGS   = arkenfox-userjs \
          callisto \
-         ktechlab \
          lite-xl \
          maxfetch \
          ninvaders \
