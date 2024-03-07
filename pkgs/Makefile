@@ -7,7 +7,6 @@ PKGS   = arkenfox-userjs \
          maxfetch \
          ninvaders \
          nvm \
-         ttf-maple-mono \
          virbos-livescripts \
          virbos-logos \
          virbos-utils \
